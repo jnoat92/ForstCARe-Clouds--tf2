@@ -2,7 +2,7 @@
 Sar to Optical Image translation
 
 ### Create conda environment using the following packages
-conda create -n tf2 pip python tensorflow-gpu tensorflow numpy joblib scikit-image scikit-learn pillow h5py spyder matplotlib tqdm icecream
+conda create -n "my_env" pip python tensorflow-gpu tensorflow numpy joblib scikit-image scikit-learn pillow h5py spyder matplotlib tqdm icecream
 
 pip install --upgrade tensorflow-gpu tensorflow numpy tf_slim
 pip install tensorflow-addons
