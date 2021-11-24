@@ -1,24 +1,17 @@
-# from __future__ import division
+"""
+No@
+"""
 import os
 import time
-# import glob
 import tensorflow as tf
 import tensorflow.compat.v1 as tf1
 from tensorflow.keras.models import save_model, load_model
 import numpy as np
-# from six.moves import xrange
-# from sklearn import preprocessing as pre
 import joblib
-# import scipy.io as io
 import matplotlib.pyplot as plt
-# from skimage.util.shape import view_as_windows
-import scipy.io as sio
 from tqdm import trange
-# import json
 
-# from ops import *
 from utils import *
-
 import network
 import sys
 
@@ -358,7 +351,7 @@ class cGAN(object):
         else:
             print(" [!] Load failed...")
 
-        idx = 1500
+        idx = 500   #1500
         generate_samples(self, output_path=sample_dir, idx=idx, 
                          patch_list = val_patches, epoch=counter, real_flag = True)
         

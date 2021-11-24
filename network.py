@@ -1,18 +1,19 @@
+"""
+No@
+"""
 import tensorflow as tf
 # import tensorflow.compat.v1 as tf1
 import tf_slim as slim
-from resnet import resnet_v2, resnet_utils
-
 import sys
 import numpy as np
-
 from tensorflow_addons.layers import SpectralNormalization
-# from SpectralNormalizationKeras import DenseSN, ConvSN2D
 from tensorflow.keras.layers import Input, Conv2D, BatchNormalization, \
                                     LeakyReLU, Activation, Conv2DTranspose, \
                                     Dropout
 from tensorflow.keras import Model
 from tensorflow.keras.initializers import RandomNormal
+
+from resnet import resnet_v2, resnet_utils
 
 def encoder_block(input_data, n_filters, k_size=3, strides=2, dilation_rate=1, activation='None', padding='same',
                   normalization = 'None', name='None', is_training=True):
