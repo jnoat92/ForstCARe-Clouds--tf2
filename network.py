@@ -221,7 +221,7 @@ def deeplab_v3(inputs, args, is_training, reuse, rate_dropout = 0.5):
                 net = Dropout(rate_dropout)(net, training=is_training)
 
             net = atrous_spatial_pyramid_pooling(net, "ASPP_layer", rate = rate, depth=512, reuse=reuse)
-            net = LeakyReLU(alpha=0.2, name='_act_LReLU')(net)
+            net = LeakyReLU(alpha=0.2)(net)
             
             net = Decoder(net, "Decoder", args, skip_connections, reuse=reuse, rate_dropout=rate_dropout, is_train=is_training)
             

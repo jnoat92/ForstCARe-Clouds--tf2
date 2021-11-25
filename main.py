@@ -82,33 +82,32 @@ def actions():
     # tf.debugging.set_log_device_placement(True)
     
     if args.phase == 'train':
-        device = "gpu:0"
+        os.environ["CUDA_VISIBLE_DEVICES"] = "0"
         physical_devices = tf.config.list_physical_devices('GPU')
         tf.config.experimental.set_memory_growth(physical_devices[0], True)
     else:   # Use CPU
-        device = "cpu:0"
+        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-    with tf.device(device):
-        with tf1.Session() as sess:
+    with tf1.Session() as sess:
 
-            model = cGAN(sess, args, image_size_tr=args.image_size_tr, image_size=args.image_size, 
-                            batch_size=args.batch_size, input_c_dim=args.input_nc,
-                            output_c_dim=args.output_nc, dataset_name=args.dataset_name,
-                            checkpoint_dir=args.checkpoint_dir, sample_dir=args.sample_dir) #args added for using DeepLabv3
+        model = cGAN(sess, args, image_size_tr=args.image_size_tr, image_size=args.image_size, 
+                     batch_size=args.batch_size, input_c_dim=args.input_nc,
+                     output_c_dim=args.output_nc, dataset_name=args.dataset_name,
+                     checkpoint_dir=args.checkpoint_dir, sample_dir=args.sample_dir) #args added for using DeepLabv3
 
-            if args.phase == 'train':
-                model.train(args)
-            elif args.phase == 'generate_complete_image':
-                model.Translate_complete_image(args, date = "t0")
-                model.Translate_complete_image(args, date = "t1")
-            elif args.phase == 'GEE_metrics':
-                # model.GEE_metrics(args, date = "t0")
-                model.GEE_metrics(args, date = "t1")
-            elif args.phase == 'Meraner_metrics':
-                model.Meraner_metrics(args, date = "t0")
-                model.Meraner_metrics(args, date = "t1")
-            else:
-                print ('...')
+        if args.phase == 'train':
+            model.train(args)
+        elif args.phase == 'generate_complete_image':
+            model.Translate_complete_image(args, date = "t0")
+            model.Translate_complete_image(args, date = "t1")
+        elif args.phase == 'GEE_metrics':
+            # model.GEE_metrics(args, date = "t0")
+            model.GEE_metrics(args, date = "t1")
+        elif args.phase == 'Meraner_metrics':
+            model.Meraner_metrics(args, date = "t0")
+            model.Meraner_metrics(args, date = "t1")
+        else:
+            print ('...')
 
 
 if __name__ == '__main__':
