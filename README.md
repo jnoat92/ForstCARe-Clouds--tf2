@@ -7,8 +7,6 @@ conda create -n "my_env" pip python tensorflow-gpu tensorflow numpy joblib sciki
 pip install --upgrade tensorflow-gpu tensorflow numpy tf_slim
 pip install tensorflow-addons
 
-gdal 3.3.3 rasterio 1.2.10 
-
 CUDA 11.2, cudnn 8.1
 
 ### Add also gdal and rasterio packages
